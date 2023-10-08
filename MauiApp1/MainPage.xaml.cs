@@ -27,7 +27,7 @@ namespace MauiApp1
                 {
                     if (control is CountdownControl countdownControl)
                     {
-                        countdownControl.UpdateCountdownLabel($"Countdown: {remainingTime:mm\\:ss}");
+                        countdownControl.UpdateCountdownLabel($"{remainingTime:mm\\:ss}");
                     }
                 }
             });
@@ -52,15 +52,20 @@ namespace MauiApp1
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
+
                     // Re-enable all buttons when the countdown is finished
                     foreach (var control in stackLayout.Children)
                     {
                         if (control is CountdownControl countdownControl)
                         {
                             countdownControl.StartButton.IsEnabled = true;
+                            countdownControl.Record();
                         }
                     }
                 });
+
+                
+
             };
         }
     }

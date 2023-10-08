@@ -18,7 +18,7 @@ namespace MauiApp1.Services
         public bool IsRunning => isRunning;
 
         public void Start(TimeSpan duration)
-        {
+        {   
             if (!isRunning)
             {
                 remainingTime = duration;
