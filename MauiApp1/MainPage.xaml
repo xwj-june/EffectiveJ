@@ -1,26 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiApp1.Controls"
              x:Class="MauiApp1.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
-
-            <Button x:Name="startButton"
-                    Text="5 Minutes"
-                    Clicked="StartButton_Clicked"
-                    HorizontalOptions="Center">
-            </Button>
-
-            <Label x:Name="countdownLabel"
-                   Text="Countdown: " 
-                   HorizontalTextAlignment="Center"
-                   FontSize="18"/>
-
-        </VerticalStackLayout>
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <controls:CountdownControl Duration="00:05:00" />
+            <controls:CountdownControl Duration="00:25:00" />
+        </StackLayout>
     </ScrollView>
 
 </ContentPage>
