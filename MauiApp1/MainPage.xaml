@@ -5,9 +5,9 @@
              x:Class="MauiApp1.MainPage">
 
     <ScrollView>
-        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <controls:CountdownControl Duration="00:05:00" />
-            <controls:CountdownControl Duration="00:25:00" />
+        <StackLayout x:Name="stackLayout" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <controls:CountdownControl Duration="00:00:10" />
+            <controls:CountdownControl Duration="00:00:20" />
         </StackLayout>
     </ScrollView>
 

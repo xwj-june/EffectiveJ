@@ -1,9 +1,12 @@
 ﻿namespace MauiApp1.Controls;
 
+using System;
+using Microsoft.Maui.Controls;
+
 public class CountdownControl : ContentView
 {
+    public Button StartButton { get; private set; } = new Button();
     private Label countdownLabel = new Label();
-    private Button startButton = new Button();
 
     public TimeSpan Duration { get; set; } = TimeSpan.FromMinutes(5);
 
@@ -11,8 +14,8 @@ public class CountdownControl : ContentView
     {
         // Initialize the UI components
         countdownLabel.Text = "Countdown: ";
-        startButton.Text = "Start Countdown";
-        startButton.Clicked += StartButton_Clicked;
+        StartButton.Text = "Start Countdown";
+        StartButton.Clicked += StartButton_Clicked;
 
         // Create the layout
         var stackLayout = new StackLayout
@@ -20,30 +23,40 @@ public class CountdownControl : ContentView
             HorizontalOptions = LayoutOptions.CenterAndExpand,
             VerticalOptions = LayoutOptions.CenterAndExpand
         };
-        stackLayout.Children.Add(startButton);
+        stackLayout.Children.Add(StartButton);
         stackLayout.Children.Add(countdownLabel);
 
         Content = stackLayout;
     }
 
-    private async void StartButton_Clicked(object sender, EventArgs e)
+    private void StartButton_Clicked(object sender, EventArgs e)
     {
-        // Calculate the end time of the countdown
-        DateTime countdownEndTime = DateTime.Now.Add(Duration);
+        // Find the parent MainPage
+        MainPage parentPage = FindParent<MainPage>(this);
 
-        // Disable the button during the countdown
-        startButton.IsEnabled = false;
-
-        // Update the countdown label every second
-        while (DateTime.Now < countdownEndTime)
+        // Start the countdown if the parent is found
+        if (parentPage != null)
         {
-            TimeSpan remainingTime = countdownEndTime - DateTime.Now;
-            countdownLabel.Text = $"Countdown: {remainingTime:mm\\:ss}";
-            await Task.Delay(1000); // Delay for 1 second
+            parentPage.StartCountdown(Duration);
         }
+    }
 
-        // Re-enable the button when the countdown is finished
-        startButton.IsEnabled = true;
-        countdownLabel.Text = "Countdown: Done!";
+    private T FindParent<T>(VisualElement element) where T : VisualElement
+    {
+        var parent = element.Parent;
+        while (parent != null)
+        {
+            if (parent is T result)
+            {
+                return result;
+            }
+            parent = parent.Parent;
+        }
+        return null;
+    }
+
+    public void UpdateCountdownLabel(string newText)
+    {
+        countdownLabel.Text = newText;
     }
 }
