@@ -88,13 +88,18 @@ public class CountdownControl : ContentView
 
         try
         {
-            var path = FileSystem.Current.AppDataDirectory;
+            var path = @"c:\EffectiveJ-Records";
+
+            if (!Directory.Exists(path))
+            {
+                DirectoryInfo di = Directory.CreateDirectory(path);
+            }
             
             //TEMP: create one file for each record, please check the TODO below
             var fullPath = Path.Combine(path, $"records-{DateTimeOffset.Now.ToString("yyyy-MM-dd-HH-mm-ss")}.txt");
 
             //TODO: investigate why this has been append more than once
-            File.AppendAllText(fullPath, formattedTimestamp);
+            File.AppendAllText(fullPath, formattedTimestamp + Environment.NewLine);
         }
         catch (Exception ex)
         {
