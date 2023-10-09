@@ -1,13 +1,15 @@
 ﻿using MauiApp1.Controls;
 using MauiApp1.Services;
 using Microsoft.Maui.Controls;
+using System.Runtime.CompilerServices;
 
 namespace MauiApp1
 {
     public partial class MainPage : ContentPage
     {
         private CountdownTimerService timerService = new CountdownTimerService();
-
+        private TaskRecordingService taskRecordingService = new TaskRecordingService();
+        private DateTimeOffset startDateTime;
 
         public MainPage()
         {
@@ -22,6 +24,7 @@ namespace MauiApp1
         {
             Device.BeginInvokeOnMainThread(() =>
             {
+                countdownTimer.Text = $"{remainingTime:mm\\:ss}";
                 // Update the countdown label by calling the UpdateCountdownLabel method in CountdownControl
                 foreach (var control in stackLayout.Children)
                 {
@@ -37,6 +40,7 @@ namespace MauiApp1
         {
             // Start the countdown with the given duration
             timerService.Start(duration);
+            startDateTime = DateTimeOffset.Now;
 
             // Disable all buttons during the countdown
             foreach (var control in stackLayout.Children)
@@ -59,9 +63,9 @@ namespace MauiApp1
                         if (control is CountdownControl countdownControl)
                         {
                             countdownControl.StartButton.IsEnabled = true;
-                            countdownControl.Record();
                         }
                     }
+                    taskRecordingService.Record(startDateTime, taskDetails.Text);
                 });
 
                 
