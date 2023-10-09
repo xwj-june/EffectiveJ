@@ -10,6 +10,8 @@ namespace MauiApp1
         private CountdownTimerService timerService = new CountdownTimerService();
         private TaskRecordingService taskRecordingService = new TaskRecordingService();
         private DateTimeOffset startDateTime;
+        
+        public TimeSpan Duration { get; set; }
 
         public MainPage()
         {
@@ -25,14 +27,6 @@ namespace MauiApp1
             Device.BeginInvokeOnMainThread(() =>
             {
                 countdownTimer.Text = $"{remainingTime:mm\\:ss}";
-                // Update the countdown label by calling the UpdateCountdownLabel method in CountdownControl
-                foreach (var control in stackLayout.Children)
-                {
-                    if (control is CountdownControl countdownControl)
-                    {
-                        countdownControl.UpdateCountdownLabel($"{remainingTime:mm\\:ss}");
-                    }
-                }
             });
         }
 
@@ -71,6 +65,26 @@ namespace MauiApp1
                 
 
             };
+        }
+
+        private void FirstButton_Clicked(object sender, EventArgs e)
+        {
+            StartCountdown(TimeSpan.FromMinutes(30));
+        }
+
+        private void SecondButton_Clicked(object sender, EventArgs e)
+        {
+            StartCountdown(TimeSpan.FromMinutes(60));
+        }
+
+        private void stopButton_Clicked(object sender, EventArgs e)
+        {
+            timerService.Stop();
+        }
+
+        private void TestButton_Clicked(object sender, EventArgs e)
+        {
+            StartCountdown(TimeSpan.FromSeconds(5));
         }
     }
 }

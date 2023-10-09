@@ -6,10 +6,14 @@
 
     <ScrollView>
         <StackLayout x:Name="stackLayout" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <controls:CountdownControl Duration="00:00:05" />
-            <controls:CountdownControl Duration="00:00:10" />
-            <Label x:Name="countdownTimer" Text="Time display"></Label>
+            <!--<controls:CountdownControl Duration="00:00:05" DisplayText="30 Mins" />
+            <controls:CountdownControl Duration="00:00:10" DisplayText="60 Mins"/>-->
+            <Button x:Name="testButton" Clicked="TestButton_Clicked" Text="Test"></Button>
+            <Button x:Name="FirstButton" Clicked="FirstButton_Clicked" Text="30 Mins"></Button>
+            <Button x:Name="SecondButton" Clicked="SecondButton_Clicked" Text="60 Mins"></Button>
+            <Label x:Name="countdownTimer" Text="Time display" HorizontalOptions="CenterAndExpand" FontSize="18"></Label>
             <Entry x:Name="taskDetails" Placeholder="Enter task details" />
+            <Button x:Name="stopButton" Clicked="stopButton_Clicked" Text="Stop"></Button>
         </StackLayout>
     </ScrollView>
 

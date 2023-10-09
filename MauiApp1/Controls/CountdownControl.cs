@@ -7,19 +7,16 @@ using Microsoft.Maui.Controls.PlatformConfiguration;
 public class CountdownControl : ContentView
 {
     public Button StartButton { get; private set; } = new Button();
-    private Label countdownLabel = new Label();
 
     public TimeSpan Duration { get; set; } = TimeSpan.FromMinutes(5);
 
-    public DateTimeOffset StartDateTime { get; set; }
-    private DateTimeOffset EndDateTime { get; set; }
-
+    public string DisplayText { get; set; }
 
     public CountdownControl()
     {
         // Initialize the UI components
-        countdownLabel.Text = "Countdown: ";
-        StartButton.Text = "Start Countdown";
+        StartButton.Text = Duration.ToString();
+        StartButton.FontSize = 12;
         StartButton.Clicked += StartButton_Clicked;
 
         // Create the layout
@@ -29,7 +26,6 @@ public class CountdownControl : ContentView
             VerticalOptions = LayoutOptions.CenterAndExpand
         };
         stackLayout.Children.Add(StartButton);
-        stackLayout.Children.Add(countdownLabel);
 
         Content = stackLayout;
     }
@@ -42,7 +38,6 @@ public class CountdownControl : ContentView
         // Start the countdown if the parent is found
         if (parentPage != null)
         {
-            StartDateTime = DateTimeOffset.Now;
             parentPage.StartCountdown(Duration);
         }
     }
@@ -60,10 +55,4 @@ public class CountdownControl : ContentView
         }
         return null;
     }
-
-    public void UpdateCountdownLabel(string newText)
-    {
-        countdownLabel.Text = newText;
-    }
-
 }
