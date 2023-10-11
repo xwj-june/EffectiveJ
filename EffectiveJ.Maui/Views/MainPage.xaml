@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EffectiveJ.Maui.Views.MainPage">
+
+    <ScrollView>
+        <StackLayout x:Name="stackLayout" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Button x:Name="testButton" Clicked="TestButton_Clicked" Text="Test"></Button>
+            <Button x:Name="FirstButton" Clicked="FirstButton_Clicked" Text="30 Mins"></Button>
+            <Button x:Name="SecondButton" Clicked="SecondButton_Clicked" Text="60 Mins"></Button>
+            <Label x:Name="countdownTimer" Text="Time display" HorizontalOptions="CenterAndExpand" FontSize="18"></Label>
+            <Entry x:Name="taskDetails" Placeholder="Enter task details" />
+            <Button x:Name="stopButton" Clicked="stopButton_Clicked" Text="Stop"></Button>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
