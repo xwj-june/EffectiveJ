@@ -1,9 +1,6 @@
-﻿using MauiApp1.Controls;
-using MauiApp1.Services;
-using Microsoft.Maui.Controls;
-using System.Runtime.CompilerServices;
+﻿using MauiApp1.Services;
 
-namespace MauiApp1
+namespace MauiApp1.Views
 {
     public partial class MainPage : ContentPage
     {
@@ -36,29 +33,11 @@ namespace MauiApp1
             timerService.Start(duration);
             startDateTime = DateTimeOffset.Now;
 
-            // Disable all buttons during the countdown
-            foreach (var control in stackLayout.Children)
-            {
-                if (control is CountdownControl countdownControl)
-                {
-                    countdownControl.StartButton.IsEnabled = false;
-                }
-            }
-
             // Subscribe to the countdown finished event
             timerService.CountdownFinished += () =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-
-                    // Re-enable all buttons when the countdown is finished
-                    foreach (var control in stackLayout.Children)
-                    {
-                        if (control is CountdownControl countdownControl)
-                        {
-                            countdownControl.StartButton.IsEnabled = true;
-                        }
-                    }
                     taskRecordingService.Record(startDateTime, taskDetails.Text);
                 });
 
@@ -69,7 +48,8 @@ namespace MauiApp1
 
         private void FirstButton_Clicked(object sender, EventArgs e)
         {
-            StartCountdown(TimeSpan.FromMinutes(30));
+            StartCountdown(TimeSpan.FromSeconds(5));
+            //StartCountdown(TimeSpan.FromMinutes(30));
         }
 
         private void SecondButton_Clicked(object sender, EventArgs e)

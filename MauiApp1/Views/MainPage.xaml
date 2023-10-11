@@ -1,13 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:MauiApp1.Controls"
-             x:Class="MauiApp1.MainPage">
+             x:Class="MauiApp1.Views.MainPage">
 
     <ScrollView>
         <StackLayout x:Name="stackLayout" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <!--<controls:CountdownControl Duration="00:00:05" DisplayText="30 Mins" />
-            <controls:CountdownControl Duration="00:00:10" DisplayText="60 Mins"/>-->
             <Button x:Name="testButton" Clicked="TestButton_Clicked" Text="Test"></Button>
             <Button x:Name="FirstButton" Clicked="FirstButton_Clicked" Text="30 Mins"></Button>
             <Button x:Name="SecondButton" Clicked="SecondButton_Clicked" Text="60 Mins"></Button>
