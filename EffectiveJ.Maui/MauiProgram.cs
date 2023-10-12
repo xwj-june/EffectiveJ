@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using EffectiveJ.Maui.Services;
+using EffectiveJ.Maui.Views;
 
 namespace EffectiveJ.Maui
 {
@@ -15,9 +17,18 @@ namespace EffectiveJ.Maui
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+
+
 #if DEBUG
-		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
+
+
+            builder.Services.AddSingleton<CountdownTimerService>();
+            builder.Services.AddSingleton<TaskRecordingService>();
+            
+            builder.Services.AddSingleton<MainPageViewModel>();
+            builder.Services.AddSingleton<MainPage>();
 
             return builder.Build();
         }
