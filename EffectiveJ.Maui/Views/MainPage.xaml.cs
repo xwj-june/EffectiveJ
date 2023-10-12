@@ -56,12 +56,7 @@ namespace EffectiveJ.Maui.Views
         {
             StartCountdown(TimeSpan.FromMinutes(60));
         }
-
-        private void stopButton_Clicked(object sender, EventArgs e)
-        {
-            timerService.Stop();
-        }
-
+        
         private void TestButton_Clicked(object sender, EventArgs e)
         {
             StartCountdown(TimeSpan.FromSeconds(5));

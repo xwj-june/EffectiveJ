@@ -5,12 +5,14 @@
 
     <ScrollView>
         <StackLayout x:Name="stackLayout" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <Button x:Name="testButton" Clicked="TestButton_Clicked" Text="Test"></Button>
-            <Button x:Name="FirstButton" Clicked="FirstButton_Clicked" Text="30 Mins"></Button>
-            <Button x:Name="SecondButton" Clicked="SecondButton_Clicked" Text="60 Mins"></Button>
-            <Label x:Name="countdownTimer" Text="Time display" HorizontalOptions="CenterAndExpand" FontSize="18"></Label>
             <Entry x:Name="taskDetails" Placeholder="Enter task details" />
-            <Button x:Name="stopButton" Clicked="stopButton_Clicked" Text="Stop"></Button>
+            <HorizontalStackLayout Margin="15">
+                <Button x:Name="testButton" Clicked="TestButton_Clicked" Text="Test"></Button>
+                <Button x:Name="FirstButton" Clicked="FirstButton_Clicked" Text="30 Mins"></Button>
+                <Button x:Name="SecondButton" Clicked="SecondButton_Clicked" Text="60 Mins"></Button>
+            </HorizontalStackLayout>
+
+            <Label  x:Name="countdownTimer" Text="00：00" HorizontalOptions="CenterAndExpand" FontSize="18"></Label>
         </StackLayout>
     </ScrollView>
 
